@@ -1,12 +1,33 @@
+# -------------------------------------------------
+# Core runtime
+# -------------------------------------------------
 streamlit>=1.28.0
 pandas>=2.0.0
-pdfplumber>=0.10.0 
+pdfplumber>=0.10.0
 openpyxl>=3.1.0
-pypdf>=3.0.0
+
+# PDF handling – keep only one of the two
+pypdf>=3.0.0               # used for reading, writing and compression
+# PyPDF2>=3.0.0            # <-- REMOVE or comment out (duplicate)
+
+# Fuzzy matching (used in Payslip Renamer)
 fuzzywuzzy>=0.18.0
 python-Levenshtein>=0.25.0
+
+# DOCX ↔ PDF conversion utilities
 pdf2docx>=0.5.0
 python-docx>=1.1.0
-reportlab>=4.0.0
+docx2pdf>=0.1.8           # optional – only needed for the DOCX→PDF tab
+
+# Image handling / PDF generation from images
 Pillow>=10.0.0
-PyPDF2>=3.0.0
+img2pdf>=0.4.4            # <-- the missing library
+
+# Reporting / drawing PDF graphics (used by the compressor)
+reportlab>=4.0.0
+
+# -----------------------------------------------------------------
+# Optional Windows‑only dependency for docx2pdf (COM/pywin32)
+# -----------------------------------------------------------------
+# The conditional syntax works for pip (>=20.3) and is ignored on non‑Windows.
+pywin32>=306; platform_system == "Windows"
